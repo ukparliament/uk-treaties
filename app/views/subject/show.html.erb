@@ -1,0 +1,6 @@
+<%= content_tag( 'h1', @subject.subject ) %>
+
+<%= content_tag( 'h2', 'Agreements' ) %>
+<ol>
+	<%= render :partial => 'agreement/agreement', :collection => @subject.agreements %>
+</ol>
