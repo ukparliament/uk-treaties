@@ -1,1 +1,1 @@
-<%= content_tag( 'li', agreement.title ) %>
+<%= content_tag( 'li', link_to( agreement.title, agreement_show_url( :agreement => agreement ) ) ) %>
