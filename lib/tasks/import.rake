@@ -16,7 +16,7 @@ task :import => :environment do
     doc = Nokogiri::HTML( URI.open("https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{number}") )
     
     # We get the title of the treaty ...
-    title_string = doc.xpath( "//tr[td/text() = 'Title:']/td[2]/text()" ).to_s
+    title_string = doc.xpath( "//tr[td/text() = 'Title:']/td[2]/text()" ).to_s.strip
     
     # ... and its subject.
     subject_string = doc.xpath( "//tr[td/text() = 'Subject:']/td[2]/text()" ).to_s.strip
@@ -35,6 +35,7 @@ task :import => :environment do
     
     # We create a new treaty with a title and subject relationship.
     agreement = Agreement.new
+    agreement.fcdo_id = number
     agreement.title = title_string
     agreement.subject = subject
     agreement.save
@@ -49,17 +50,14 @@ task :import => :environment do
       #puts country_action
       
       # ... we pull out the party, action type, action date and effective date.
-      party_string = country_action.xpath( "td[1]/text()" ).to_s
-      puts party_string
-      action_type_string = country_action.xpath( "td[2]/text()" ).to_s
-      puts action_type_string
-      action_date_string = country_action.xpath( "td[3]/text()" ).to_s
-      puts action_date_string
-      effective_date_string = country_action.xpath( "td[4]/text()" ).to_s
-      puts effective_date_string
+      party_string = country_action.xpath( "td[1]/text()" ).to_s.strip
+      action_type_string = country_action.xpath( "td[2]/text()" ).to_s.strip
+      action_date_string = country_action.xpath( "td[3]/text()" ).to_s.strip
+      effective_date_string = country_action.xpath( "td[4]/text()" ).to_s.strip
       
       # We check to see if this is a party we've already encountered.
-      party = Party.find_by_name( party_string )
+      # We use the downcased name to check and avoid creating the same party twice.
+      party = Party.find_by_downcased_name( party_string.downcase )
       
       # If it's not a party we've already encountered ...
       unless party
@@ -67,6 +65,7 @@ task :import => :environment do
         # ... we create a new party.
         party = Party.new
         party.name = party_string
+        party.downcased_name = party_string.downcase
         party.save
       end
       
