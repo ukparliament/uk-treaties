@@ -1,0 +1,6 @@
+<tr>
+	<%= content_tag( 'td', link_to( action_from_party.agreement.title, agreement_show_url( :agreement => action_from_party.agreement ) ) ) %>
+	<%= content_tag( 'td', action_from_party.action_type.label ) %>
+	<%= content_tag( 'td', action_from_party.action_on ) %>
+	<%= content_tag( 'td', action_from_party.effective_on ) %>
+</tr>
