@@ -7,6 +7,7 @@ drop table if exists parties;
 create table parties (
 	id serial,
 	name varchar(255) not null,
+	downcased_name varchar(255) not null,
 	primary key (id)
 );
 create table action_types (
@@ -21,6 +22,7 @@ create table subjects (
 );
 create table agreements (
 	id serial,
+	fcdo_id int not null,
 	title varchar(2000) not null,
 	subject_id int not null,
 	constraint fk_subject foreign key (subject_id) references subjects(id),
