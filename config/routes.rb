@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   
   get 'subjects' => 'subject#index', :as => 'subject_list'
   get 'subjects/:subject' => 'subject#show', :as => 'subject_show'
+  
+  get 'parties' => 'party#index', :as => 'party_list'
+  get 'parties/:party' => 'party#show', :as => 'party_show'
 end
