@@ -7,7 +7,7 @@ task :import => :environment do
   puts "importing"
   
   # We cycle through known treaty numbers on the FCDO website.
-  (58135..82261).each do |number|
+  (58135..82263).each do |number|
     
     # We check to see if this is an agreement we've already encountered.
     agreement = Agreement.find_by_fcdo_id( number )
@@ -27,8 +27,11 @@ task :import => :environment do
       # We fetch the 'metadata' for each treaty.
       doc = Nokogiri::HTML( URI.open("https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{number}") )
     
-      # We get the title of the treaty ...
+      # We get the title of the treaty, ...
       title_string = doc.xpath( "//tr[td/text() = 'Title:']/td[2]/text()" ).to_s.strip
+    
+      # ... its description ...
+      description_string = doc.xpath( "//tr[td/text() = 'Description:']/td[2]/text()" ).to_s.strip
     
       # ... and its subject.
       subject_string = doc.xpath( "//tr[td/text() = 'Subject:']/td[2]/text()" ).to_s.strip
@@ -53,10 +56,19 @@ task :import => :environment do
       agreement = Agreement.new
       agreement.fcdo_id = number
       agreement.title = title_string
+      agreement.description = description_string unless description_string.blank?
       agreement.subject = subject
       agreement.save
     
       #puts doc.xpath( "//tr[td/text() = 'Relation:']/td[2]/text()" ).to_s.split( '||' ).first
+      doc.xpath( "//tr[td/text() = 'Relation:']" ).each do |relation|
+        
+        relation_text = relation.xpath( "td[2]/text()" ).to_s.split( '||' ).first
+        relation = Relation.new
+        relation.relation = relation_text
+        relation.agreement = agreement
+        relation.save
+      end
     
       # We fetch the 'file' for each treaty.
       doc = Nokogiri::HTML( URI.open("https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{number}") )
