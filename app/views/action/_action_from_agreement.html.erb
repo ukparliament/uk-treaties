@@ -1,6 +1,10 @@
 <tr>
 	<%= content_tag( 'td', link_to( action_from_agreement.party.name, party_show_url( :party => action_from_agreement.party ) ) ) %>
-	<%= content_tag( 'td', action_from_agreement.action_type.label ) %>
+	<td>
+		<% if action_from_agreement.action_type -%>
+			<%= action_from_agreement.action_type.label %>
+		<% end -%>
+	</td>
 	<%= content_tag( 'td', action_from_agreement.action_on ) %>
 	<%= content_tag( 'td', action_from_agreement.effective_on ) %>
 </tr>
