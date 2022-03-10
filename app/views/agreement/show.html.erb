@@ -4,6 +4,13 @@
 
 <%= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@agreement.fcdo_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@agreement.fcdo_id}" )}".html_safe ) %>
 
+<% unless @agreement.relations.empty? -%>
+	<%= content_tag( 'h2', 'Relations' ) %>
+	<ul>
+		<%= render :partial => 'relation/relation', :collection => @agreement.relations %>
+	</ul>
+<% end -%>
+
 <% unless @agreement.actions.empty? -%>
 	<%= content_tag( 'h2', 'Actions' ) %>
 	<table>
