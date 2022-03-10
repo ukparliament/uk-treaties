@@ -1,5 +1,7 @@
 <%= content_tag( 'h1', @agreement.title ) %>
 
+<%= content_tag( 'p', @agreement.description ) if @agreement.description %>
+
 <%= content_tag( 'p', "Subject: #{link_to( @agreement.subject.subject, subject_show_url( :subject => @agreement.subject ) )}".html_safe ) if @agreement.subject %>
 
 <%= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@agreement.fcdo_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@agreement.fcdo_id}" )}".html_safe ) %>
