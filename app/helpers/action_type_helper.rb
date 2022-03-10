@@ -1,0 +1,2 @@
+module ActionTypeHelper
+end
