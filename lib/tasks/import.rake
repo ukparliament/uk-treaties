@@ -34,7 +34,7 @@ task :import => :environment do
       subject_string = doc.xpath( "//tr[td/text() = 'Subject:']/td[2]/text()" ).to_s.strip
       
       # If we've found a subject string ...
-      if subject_string
+      unless subject_string.blank?
     
         # ... we check to see if this is a subject we've already encountered.
         subject = Subject.find_by_subject( subject_string )
@@ -63,7 +63,6 @@ task :import => :environment do
     
       # For each table row having a td ...
       doc.xpath( '//tr[td]' ).each do |country_action|
-        #puts country_action
       
         # ... we pull out the party, action type, action date and effective date.
         party_string = country_action.xpath( "td[1]/text()" ).to_s.strip
@@ -86,7 +85,7 @@ task :import => :environment do
         end
         
         # If we've found an action type string ...
-        if action_type_string
+        unless action_type_string.blank?
       
           # ... we check to see if this is an action type we've already encountered.
           action_type = ActionType.find_by_label( action_type_string )
