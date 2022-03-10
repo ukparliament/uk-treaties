@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   
   get 'parties' => 'party#index', :as => 'party_list'
   get 'parties/:party' => 'party#show', :as => 'party_show'
+  
+  get 'action-types' => 'action_type#index', :as => 'action_type_list'
+  get 'action-types/:action_type' => 'action_type#show', :as => 'action_type_show'
 end
