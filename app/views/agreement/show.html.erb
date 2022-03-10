@@ -2,6 +2,8 @@
 
 <%= content_tag( 'p', "Subject: #{link_to( @agreement.subject.subject, subject_show_url( :subject => @agreement.subject ) )}".html_safe ) %>
 
+<%= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@agreement.fcdo_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@agreement.fcdo_id}" )}".html_safe ) %>
+
 <% unless @agreement.actions.empty? -%>
 	<%= content_tag( 'h2', 'Actions' ) %>
 	<table>
