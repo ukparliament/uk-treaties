@@ -4,11 +4,6 @@ task :import_json => :environment do
   Dir.entries( 'db/json' ).each do |file|
     if file.include?( '_batch.json' )
       doc = File.read( "db/json/#{file}" )
-      #doc = doc.gsub(/'/, '"')
-      #doc = doc.gsub("'",/"/)
-      
-      
-      
       json = JSON.parse( doc )
       json['csw:GetRecordsResponse']['csw:SearchResults']['iStoreRecord'].each do |record|
         puts '======='
@@ -27,18 +22,23 @@ task :import_json => :environment do
         field3 = record['field3']
         document_url = record['document_url']
         
-        puts "signing location: #{signed_event_location}"
-        puts "references: #{references}"
-        puts "signing date: #{signed_event_date}"
-        puts "subject: #{subject}"
-        puts "title: #{title}"
-        puts "description: #{description}"
-        puts "uuid: #{uuid}"
-        puts "lb document id: #{lb_document_id}"
-        puts "country name: #{document_path}"
-        puts "document path: #{country_name}"
-        puts "field3: #{field3}"
-        puts "document url: #{document_url}"
+        agreement = Agreement.new
+        agreement.signed_event_location = signed_event_location
+        agreement.references = references
+        agreement.signed_event_on = signed_event_date
+        agreement.subject = subject
+        agreement.definative_eif_event_date = definative_eif_event_date
+        agreement.title = title
+        agreement.description = description
+        agreement.uuid = uuid
+        agreement.lb_document_id = lb_document_id
+        agreement.document_path = document_path
+        agreement.country_name = country_name
+        agreement.record_id = id
+        agreement.field3 = field3
+        agreement.document_url = document_url
+        
+        
       end
     end
   end
