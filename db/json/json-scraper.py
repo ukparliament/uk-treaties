@@ -43,5 +43,5 @@ def send_request(pageNumberVar):
     except requests.exceptions.RequestException:
         print("HTTP Request failed")
 
-for x in range(1000, 2000):
+for x in range(2000, 3000):
     send_request(x)

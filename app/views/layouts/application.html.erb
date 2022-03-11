@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
   <head>
     <title>FcdoTreaties</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <style>
+    body {max-width:42rem;padding:1rem;margin:1rem auto;font-family:sans-serif;line-height:1.4;}
+    a {text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    h1 {font-weight:normal;}
+    image {width:100%;height:auto;}
+    </style>
+</head>
 
   <body>
+  
+  <header>
+  <nav>
+  <a href="/">uk-agreements</a>
+  </nav>
+  </header>
+  <main>
     <%= yield %>
+    </main>
+    <footer></footer>
   </body>
 </html>
