@@ -2,7 +2,7 @@ task :import_json => :environment do
   puts "importing JSON"
   
   Dir.entries( 'db/json' ).each do |file|
-    if file.include?( 'batch' )
+    if file.include?( '_batch.json' )
       doc = File.read( "db/json/#{file}" )
       #doc = doc.gsub(/'/, '"')
       #doc = doc.gsub("'",/"/)
