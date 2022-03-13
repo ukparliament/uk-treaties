@@ -1,0 +1,2 @@
+class AgreementType < ApplicationRecord
+end
