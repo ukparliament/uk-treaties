@@ -5,7 +5,7 @@
 <%= content_tag( 'p', "Subject: #{link_to( @agreement.subject.subject, subject_show_url( :subject => @agreement.subject ) )}".html_safe ) if @agreement.subject %>
 
 <% if @agreement.agreement_type -%>
-	<%= content_tag( 'p', @agreement.agreement_type.label ) %>
+	<%= content_tag( 'p', "Agreement type: #{@agreement.agreement_type.label}" ) %>
 <% else -%>
 	<%= content_tag( 'p', 'Agreement type - bilateral or multilateral - is not present in FCDO dataset.' )%>
 <% end -%>
