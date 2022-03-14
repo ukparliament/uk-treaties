@@ -28,12 +28,18 @@ task :import_json => :environment do
         description = record['description']
         signed_event_location = record['signed_event_location']
         signed_event_date = record['signed_event_date']
-        references = record['references']
         definative_eif_event_date = record['definative_eif_event_date']
+        references = record['references']
         country_name = record['country_name']
         subject_string = record['subject']
         agreement_type_string = record['field3']
-        record_id = record['id']
+        record_id = record['id'].to_i
+        lb_document_id = record['lb_document_id'].to_i
+        if record_id != lb_document_id
+          puts "shit"
+          puts record_id
+          puts lb_document_id
+        end
         
         # We ignore ...
         # ... lb_document_id because this is always the same as the record_id.
@@ -135,12 +141,36 @@ task :import_json => :environment do
              puts agreement_id
              puts "country name"
           end
+          if agreement.subject && agreement.subject.subject != subject_string
+            puts agreement_id 
+            puts "subject"
+          end
+          if agreement.agreement_type && agreement.agreement_type.short_name != agreement_type_string
+            puts agreement_id
+            puts "agreement type string"
+          end
+          if agreement.records.first.record_id != record_id
+            puts "======="
+            puts agreement_id
+            puts record_id.inspect
+            puts agreement.records.first.record_id.inspect
+            puts "record id"
+          end
+          if agreement.records.first.lb_document_id != lb_document_id
+            #puts agreement_id 
+            #puts "lb document id"
+          end
+          
+          
+          
+          
         end
         
         # Regardless of whether or not we've seen an agreement with the same uuid as the record ...
         # ... we create a new record ...
         record = Record.new
         record.record_id = record_id
+        record.lb_document_id = lb_document_id
         # ... and attach it to the agreement.
         record.agreement = agreement
         record.save
