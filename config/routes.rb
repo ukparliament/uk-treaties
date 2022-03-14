@@ -6,8 +6,20 @@ Rails.application.routes.draw do
   get 'agreements' => 'agreement#index', :as => 'agreement_list'
   get 'agreements/:agreement' => 'agreement#show', :as => 'agreement_show'
   
+  get 'agreement-types' => 'agreement_type#index', :as => 'agreement_type_list'
+  get 'agreement-types/:agreement_type' => 'agreement_type#show', :as => 'agreement_type_show'
+  
   get 'subjects' => 'subject#index', :as => 'subject_list'
   get 'subjects/:subject' => 'subject#show', :as => 'subject_show'
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   get 'parties' => 'party#index', :as => 'party_list'
   get 'parties/:party' => 'party#show', :as => 'party_show'
