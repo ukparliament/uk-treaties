@@ -1,9 +1,0 @@
-<%= content_tag( 'h1', @agreement_type.label ) %>
-
-<%= content_tag( 'h2', 'Agreements' ) %>
-<table>
-	<%= render :partial => 'agreement/table_header' %>
-	<tbody>
-		<%= render :partial => 'agreement/agreement', :collection => @agreement_type.agreements %>
-	</tbody>
-</table>

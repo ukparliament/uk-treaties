@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AgreementControllerTest < ActionDispatch::IntegrationTest
+class TreatyTypeControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

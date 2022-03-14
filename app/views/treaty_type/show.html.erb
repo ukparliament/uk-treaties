@@ -1,0 +1,9 @@
+<%= content_tag( 'h1', @treaty_type.label ) %>
+
+<%= content_tag( 'h2', 'Treaties' ) %>
+<table>
+	<%= render :partial => 'treaty/table_header' %>
+	<tbody>
+		<%= render :partial => 'treaty/treaty', :collection => @treaty_type.treaties %>
+	</tbody>
+</table>
