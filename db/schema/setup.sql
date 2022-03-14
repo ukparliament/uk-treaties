@@ -50,7 +50,7 @@ create table agreements (
 	signed_event_at varchar(255),
 	reference_values varchar(10000),
 	signed_event_on varchar(255),
-	definative_eif_event_date varchar(255),
+	definitive_eif_event_date varchar(255),
 	country_name varchar(10000),
 	
 	constraint fk_agreement_type foreign key (agreement_type_id) references agreement_types(id),
