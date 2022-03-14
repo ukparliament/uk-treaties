@@ -1,7 +1,7 @@
 class AgreementController < ApplicationController
   
   def index
-    @agreements = Agreement.all
+    @agreements = Agreement.all.order( 'signed_event_on' )
   end
   
   def show
