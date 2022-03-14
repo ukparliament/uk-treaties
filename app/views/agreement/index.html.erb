@@ -1,4 +1,7 @@
 <%= content_tag( 'h1', 'Agreements' ) %>
-<ol>
-	<%= render :partial => 'agreement', :collection => @agreements %>
-</ol>
+<table>
+	<%= render :partial => 'table_header' %>
+	<tbody>
+		<%= render :partial => 'agreement', :collection => @agreements %>
+	</tbody>
+</table>
