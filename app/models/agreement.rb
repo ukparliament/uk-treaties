@@ -7,4 +7,5 @@ class Agreement < ApplicationRecord
   
   belongs_to :subject, optional: true
   belongs_to :agreement_type, optional: true
+  has_many :records
 end
