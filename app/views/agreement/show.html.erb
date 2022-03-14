@@ -10,6 +10,12 @@
 	<%= content_tag( 'p', 'Agreement type - bilateral or multilateral - is not present in FCDO dataset.' )%>
 <% end -%>
 
+<%= content_tag( 'h2', 'Records' ) %>
+<ol>
+	<%= render :partial => 'record/record', :collection => @agreement.records %>
+</ol>
+
+
 
 
 <!-- %= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@agreement.fcdo_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@agreement.fcdo_id}" )}".html_safe ) % -->
