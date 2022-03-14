@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AgreementTest < ActiveSupport::TestCase
+class TreatyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
