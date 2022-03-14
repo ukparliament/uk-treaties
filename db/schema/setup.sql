@@ -59,7 +59,8 @@ create table agreements (
 );
 create table records (
 	id serial,
-	record_id varchar(255) not null,
+	record_id int not null,
+	lb_document_id int not null,
 	agreement_id int not null,
 	constraint fk_agreement foreign key (agreement_id) references agreements(id),
 	primary key (id)
