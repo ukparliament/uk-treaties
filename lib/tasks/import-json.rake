@@ -28,7 +28,7 @@ task :import_json => :environment do
         description = record['description']
         signed_event_location = record['signed_event_location']
         signed_event_date = record['signed_event_date']
-        definative_eif_event_date = record['definative_eif_event_date']
+        definitive_eif_event_date = record['definative_eif_event_date']
         references = record['references']
         country_name = record['country_name']
         subject_string = record['subject']
@@ -62,7 +62,7 @@ task :import_json => :environment do
           agreement.signed_event_at = signed_event_location.strip if signed_event_location
           agreement.signed_event_on = signed_event_date.strip if signed_event_date
           agreement.reference_values = references.strip if references
-          agreement.definative_eif_event_date = definative_eif_event_date.strip if definative_eif_event_date
+          agreement.definitive_eif_event_date = definitive_eif_event_date.strip if definative_eif_event_date
           agreement.country_name = country_name.strip if country_name
           
           # If the agreement has an agreement type string ...
@@ -133,9 +133,9 @@ task :import_json => :environment do
             puts agreement_id
             puts "references"
           end
-          if agreement.definative_eif_event_date != definative_eif_event_date
+          if agreement.definitive_eif_event_date != definitive_eif_event_date
              puts agreement_id
-             puts "definative eif event date"
+             puts "definitive eif event date"
           end
           if agreement.country_name != country_name
              puts agreement_id
