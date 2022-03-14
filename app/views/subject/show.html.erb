@@ -1,9 +1,9 @@
 <%= content_tag( 'h1', @subject.subject ) %>
 
-<%= content_tag( 'h2', 'Agreements' ) %>
+<%= content_tag( 'h2', 'Treaties' ) %>
 <table>
-	<%= render :partial => 'agreement/table_header' %>
+	<%= render :partial => 'treaty/table_header' %>
 	<tbody>
-		<%= render :partial => 'agreement/agreement', :collection => @subject.agreements %>
+		<%= render :partial => 'treaty/treaty', :collection => @subject.treaties %>
 	</tbody>
 </table>
