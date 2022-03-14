@@ -1,2 +1,0 @@
-class Treaty < ApplicationRecord
-end
