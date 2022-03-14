@@ -1,0 +1,5 @@
+<tr>
+	<%= content_tag( 'td', treaty.signed_on ) %>
+	<%= content_tag( 'td', treaty.in_force_on ) %>
+	<%= content_tag( 'td', link_to( treaty.title, treaty_show_url( :treaty => treaty ) ) ) %>
+</tr>

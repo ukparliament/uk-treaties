@@ -1,0 +1,64 @@
+<%= content_tag( 'h1', @treaty.title ) %>
+
+<%= content_tag( 'p', @treaty.description ) if @treaty.description %>
+
+<table>
+	<tbody>
+		<tr>
+			<%= content_tag( 'td', 'Treaty type:' ) %>
+			<td>
+				<% if @treaty.treaty_type -%>
+					<%= @treaty.treaty_type.label %>
+				<% else -%>
+					Treaty type - bilateral or multilateral - is not present in FCDO dataset.
+				<% end -%>
+			</td>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'Subject:' ) %>
+			<td>
+				<% if @treaty.subject -%>
+					<%= link_to( @treaty.subject.subject, subject_show_url( :subject => @treaty.subject ) ) %>
+				<% else -%>
+					The subject of the treaty is not present in FCDO dataset.
+				<% end -%>
+			</td>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'Signed at:' ) %>
+			<%= content_tag( 'td', @treaty.signed_in ) %>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'Signed on:' ) %>
+			<%= content_tag( 'td', @treaty.signed_on ) %>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'In force on:' ) %>
+			<%= content_tag( 'td', @treaty.in_force_on ) %>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'References:' ) %>
+			<%= content_tag( 'td', @treaty.reference_values ) %>
+		</tr>
+		<tr>
+			<%= content_tag( 'td', 'Countries:' ) %>
+			<%= content_tag( 'td', @treaty.country_name ) %>
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+
+
+
+<!-- %= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@agreement.fcdo_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@agreement.fcdo_id}" )}".html_safe ) % -->
+
+
+
+<table>
+	<tbody>
+		
+	</tbody>
+</table>

@@ -1,0 +1,7 @@
+<%= content_tag( 'h1', 'Treaties' ) %>
+<table>
+	<%= render :partial => 'table_header' %>
+	<tbody>
+		<%= render :partial => 'treaty', :collection => @treaties %>
+	</tbody>
+</table>
