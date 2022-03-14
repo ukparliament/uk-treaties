@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   
   get '/' => 'home#index', :as => 'home'
   
-  get 'agreements' => 'agreement#index', :as => 'agreement_list'
-  get 'agreements/:agreement' => 'agreement#show', :as => 'agreement_show'
+  get 'treaties' => 'treaty#index', :as => 'treaty_list'
+  get 'treaties/:treaty' => 'treaty#show', :as => 'treaty_show'
   
-  get 'agreement-types' => 'agreement_type#index', :as => 'agreement_type_list'
-  get 'agreement-types/:agreement_type' => 'agreement_type#show', :as => 'agreement_type_show'
+  get 'treaty-types' => 'treaty_type#index', :as => 'treaty_type_list'
+  get 'treaty-types/:treaty_type' => 'treaty_type#show', :as => 'treaty_type_show'
   
   get 'subjects' => 'subject#index', :as => 'subject_list'
   get 'subjects/:subject' => 'subject#show', :as => 'subject_show'
