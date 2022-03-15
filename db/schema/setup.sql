@@ -29,6 +29,7 @@ create table treaties (
 	description varchar(10000),
 	signed_on varchar(255),
 	in_force_on varchar(255),
+	pdf_link varchar(255),
 	treaty_type_id int,
 	subject_id int,
 	
