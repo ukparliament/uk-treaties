@@ -1,5 +1,6 @@
 drop table if exists treaty_parties;
 drop table if exists parties;
+drop table if exists citations;
 drop table if exists treaties;
 drop table if exists subjects;
 drop table if exists treaty_types;
@@ -32,10 +33,17 @@ create table treaties (
 	subject_id int,
 	
 	signed_in varchar(255),
-	reference_values varchar(10000),
 	
 	constraint fk_treaty_type foreign key (treaty_type_id) references treaty_types(id),
 	constraint fk_subject foreign key (subject_id) references subjects(id),
+	primary key (id)
+);
+
+create table citations (
+	id serial,
+	citation varchar(255) not null,
+	treaty_id int not null,
+	constraint fk_treaty foreign key (treaty_id) references treaties(id),
 	primary key (id)
 );
 
