@@ -1,6 +1,14 @@
 <%= content_tag( 'h1', @party.name ) %>
 
-<%= content_tag( 'h1', 'Agreements' ) %>
+<%= content_tag( 'h1', 'Treaties' ) %>
+<table>
+	<%= render :partial => 'treaty/table_header' %>
+	<tbody>
+		<%= render :partial => 'treaty/treaty', :collection => @party.treaties %>
+	</tbody>
+</table>
+
+<!-- %= content_tag( 'h1', 'Actions' ) %>
 <table>
 	<thead>
 		<tr>
@@ -11,7 +19,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%= render :partial => 'action/action_from_party', :collection => @party.actions %>
+		<!-- %= render :partial => 'action/action_from_party', :collection => @party.actions % -->
 	</tbody>
-</table>
+</table -->
 		
