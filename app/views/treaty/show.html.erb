@@ -40,12 +40,15 @@
 			<%= content_tag( 'td', 'References:' ) %>
 			<%= content_tag( 'td', @treaty.reference_values ) %>
 		</tr>
-		<tr>
-			<%= content_tag( 'td', 'Countries:' ) %>
-			<%= content_tag( 'td', @treaty.country_name ) %>
-		</tr>
 	</tbody>
 </table>
+
+<% unless @treaty.parties.empty? -%>
+	<%= content_tag( 'h2', 'Parties' ) %>
+	<ol>
+		<%= render :partial => 'party/party', :collection => @treaty.parties %>
+	</ol>
+<% end -%>
 
 
 
