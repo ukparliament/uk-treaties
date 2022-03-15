@@ -26,29 +26,58 @@
 		</tr>
 		<tr>
 			<%= content_tag( 'td', 'Signed at:' ) %>
-			<%= content_tag( 'td', @treaty.signed_in ) %>
+			<td>
+				<% if @treaty.signed_in -%>
+					<%= @treaty.signed_in %>
+				<% else -%>
+					The signing location is not present in FCDO dataset.
+				<% end -%>
+			</td>
 		</tr>
 		<tr>
 			<%= content_tag( 'td', 'Signed on:' ) %>
-			<%= content_tag( 'td', @treaty.signed_on ) %>
+			<td>
+				<% if @treaty.signed_on -%>
+					<%= @treaty.signed_on %>
+				<% else -%>
+					The date of signing is not present in FCDO dataset.
+				<% end -%>
+			</td>
 		</tr>
 		<tr>
 			<%= content_tag( 'td', 'In force on:' ) %>
-			<%= content_tag( 'td', @treaty.in_force_on ) %>
+			<td>
+				<% if @treaty.in_force_on -%>
+					<%= @treaty.in_force_on %>
+				<% else -%>
+					The in force date is not present in FCDO dataset.
+				<% end -%>
+			</td>
 		</tr>
 		<tr>
 			<%= content_tag( 'td', 'References:' ) %>
-			<%= content_tag( 'td', @treaty.reference_values ) %>
+			<td>
+				<% if @treaty.reference_values -%>
+					<%= @treaty.reference_values %>
+				<% else -%>
+					There are no references listed in FCDO dataset.
+				<% end -%>
+			</td>
 		</tr>
 	</tbody>
 </table>
 
+
+<%= content_tag( 'h2', 'Parties' ) %>
 <% unless @treaty.parties.empty? -%>
-	<%= content_tag( 'h2', 'Parties' ) %>
 	<ol>
 		<%= render :partial => 'party/party', :collection => @treaty.parties %>
 	</ol>
+<% else -%>
+	There are no parties listed in FCDO dataset.
 <% end -%>
+
+
 
 
 
