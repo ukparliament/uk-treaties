@@ -15,5 +15,6 @@ task :get_pdf_links => :environment do
     
     # ... and add the link to the treaty the citation is attached to.
     citation.treaty.pdf_link = pdf_link
+    citation.treaty.save
   end
 end
