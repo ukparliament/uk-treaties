@@ -1,3 +1,5 @@
+drop table if exists treaty_parties;
+drop table if exists parties;
 drop table if exists treaties;
 drop table if exists subjects;
 drop table if exists treaty_types;
@@ -26,21 +28,29 @@ create table treaties (
 	description varchar(10000),
 	signed_on varchar(255),
 	in_force_on varchar(255),
-	
-	
-	
 	treaty_type_id int,
 	subject_id int,
 	
-	
-	
-	
-	
 	signed_in varchar(255),
 	reference_values varchar(10000),
-	country_name varchar(10000),
 	
 	constraint fk_treaty_type foreign key (treaty_type_id) references treaty_types(id),
 	constraint fk_subject foreign key (subject_id) references subjects(id),
+	primary key (id)
+);
+
+create table parties (
+	id serial,
+	name varchar(255) not null,
+	downcased_name varchar(255) not null,
+	primary key (id)
+);
+
+create table treaty_parties (
+	id serial,
+	treaty_id int not null,
+	party_id int not null,
+	constraint fk_treaty foreign key (treaty_id) references treaties(id),
+	constraint fk_party foreign key (party_id) references parties(id),
 	primary key (id)
 );
