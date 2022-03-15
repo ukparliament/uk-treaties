@@ -1,0 +1,10 @@
+<div id="citations">
+	<%= content_tag( 'h2', 'Citations' ) %>
+	<% unless citations.citations.empty? -%>
+		<ol>
+			<%= render :partial => 'citation/citation', :collection => citations.citations %>
+		</ol>
+	<% else -%>
+		There are no citations listed in FCDO dataset.
+	<% end -%>
+</div>

@@ -1,0 +1,10 @@
+<div id="parties">
+	<%= content_tag( 'h2', 'Parties' ) %>
+	<% unless parties.parties.empty? -%>
+		<ol>
+			<%= render :partial => 'party/party', :collection => parties.parties %>
+		</ol>
+	<% else -%>
+		There are no parties listed in FCDO dataset.
+	<% end -%>
+</div>

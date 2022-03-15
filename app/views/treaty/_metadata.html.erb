@@ -1,0 +1,20 @@
+<details class="metadata">
+    <summary>Metadata</summary>
+	<%= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{metadata.record_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{metadata.record_id}" )}".html_safe ) %>
+	<table>
+		<tbody>
+			<tr>
+				<%= content_tag( 'th', 'UUID:' ) %>
+				<%= content_tag( 'td', metadata.uuid ) %>
+			</tr>
+			<tr>
+				<%= content_tag( 'th', 'Treaty ID:' ) %>
+				<%= content_tag( 'td', metadata.treaty_id ) %>
+			</tr>
+			<tr>
+				<%= content_tag( 'th', 'Record ID:' ) %>
+				<%= content_tag( 'td', metadata.record_id ) %>
+			</tr>
+		</tbody>
+	</table>
+</details>

@@ -1,107 +1,20 @@
 <%= content_tag( 'h1', @treaty.title ) %>
-
-<%= content_tag( 'p', "On the FCDO treaty website: #{link_to( 'Metadata', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=metadata&item=#{@treaty.record_id}" )} &bullet; #{link_to( 'File', "https://treaties.fcdo.gov.uk/awweb/awarchive?type=file&item=#{@treaty.record_id}" )}".html_safe ) %>
-
 <%= content_tag( 'p', @treaty.description ) if @treaty.description %>
 
 
+<%= render :partial => 'details', :object => @treaty %>
+<%= render :partial => 'document', :object => @treaty %>
+<%= render :partial => 'parties', :object => @treaty %>
+<%= render :partial => 'citations', :object => @treaty %>
+<%= render :partial => 'metadata', :object => @treaty %>
 
-<table>
-	<tbody>
-		<tr>
-			<%= content_tag( 'th', 'UUID:' ) %>
-			<%= content_tag( 'td', @treaty.uuid ) %>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Treaty ID:' ) %>
-			<%= content_tag( 'td', @treaty.treaty_id ) %>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Record ID:' ) %>
-			<%= content_tag( 'td', @treaty.record_id ) %>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Treaty type:' ) %>
-			<td>
-				<% if @treaty.treaty_type -%>
-					<%= link_to( @treaty.treaty_type.label, treaty_type_show_url( :treaty_type => @treaty.treaty_type ) ) %>
-				<% else -%>
-					Treaty type - bilateral or multilateral - is not present in FCDO dataset.
-				<% end -%>
-			</td>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Subject:' ) %>
-			<td>
-				<% if @treaty.subject -%>
-					<%= link_to( @treaty.subject.subject, subject_show_url( :subject => @treaty.subject ) ) %>
-				<% else -%>
-					The subject of the treaty is not present in FCDO dataset.
-				<% end -%>
-			</td>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Signed at:' ) %>
-			<td>
-				<% if @treaty.signed_in -%>
-					<%= @treaty.signed_in %>
-				<% else -%>
-					The signing location is not present in FCDO dataset.
-				<% end -%>
-			</td>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'Signed on:' ) %>
-			<td>
-				<% if @treaty.signed_on -%>
-					<%= @treaty.signed_on %>
-				<% else -%>
-					The date of signing is not present in FCDO dataset.
-				<% end -%>
-			</td>
-		</tr>
-		<tr>
-			<%= content_tag( 'th', 'In force on:' ) %>
-			<td>
-				<% if @treaty.in_force_on -%>
-					<%= @treaty.in_force_on %>
-				<% else -%>
-					The in force date is not present in FCDO dataset.
-				<% end -%>
-			</td>
-		</tr>
-	</tbody>
-</table>
 
-<div id="document">
-	<%= content_tag( 'h2', 'Treaty document' ) %>
-	<% unless @treaty.pdf_link.blank? -%>
-		<iframe src=<%= @treaty.pdf_link %>>
-		</iframe>
-		<%= content_tag( 'p', link_to( 'Get the PDF', @treaty.pdf_link ) ) %>
-	<% else -%>
-		There is no document in FCDO dataset.
-	<% end -%>
-</div>
 
-<div id="parties">
-	<%= content_tag( 'h2', 'Parties' ) %>
-	<% unless @treaty.parties.empty? -%>
-		<ol>
-			<%= render :partial => 'party/party', :collection => @treaty.parties %>
-		</ol>
-	<% else -%>
-		There are no parties listed in FCDO dataset.
-	<% end -%>
-</div>
+		
+		
 
-<div id="citations">
-	<%= content_tag( 'h2', 'Citations' ) %>
-	<% unless @treaty.citations.empty? -%>
-		<ol>
-			<%= render :partial => 'citation/citation', :collection => @treaty.citations %>
-		</ol>
-	<% else -%>
-		There are no citations listed in FCDO dataset.
-	<% end -%>
-</div>
+
+
+
+
+
