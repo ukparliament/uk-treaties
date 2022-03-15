@@ -4,6 +4,8 @@
 
 <%= content_tag( 'p', @treaty.description ) if @treaty.description %>
 
+
+
 <table>
 	<tbody>
 		<tr>
@@ -70,6 +72,17 @@
 		</tr>
 	</tbody>
 </table>
+
+<div id="document">
+	<%= content_tag( 'h2', 'Treaty document' ) %>
+	<% unless @treaty.pdf_link.blank? -%>
+		<iframe src=<%= @treaty.pdf_link %>>
+		</iframe>
+		<%= content_tag( 'p', link_to( 'Get the PDF', @treaty.pdf_link ) ) %>
+	<% else -%>
+		There is no document in FCDO dataset.
+	<% end -%>
+</div>
 
 <div id="parties">
 	<%= content_tag( 'h2', 'Parties' ) %>
