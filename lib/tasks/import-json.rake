@@ -33,10 +33,13 @@ task :import_json => :environment do
         
         
         signed_in = record['signed_event_location']
-        references = record['references']
         
         
         
+        
+        
+        
+        citation_string = record['references']
         treaty_type_string = record['field3']
         subject_string = record['subject']
         parties_string = record['country_name']
@@ -66,7 +69,6 @@ task :import_json => :environment do
           
           
           treaty.signed_in = signed_in.strip if signed_in
-          treaty.reference_values = references.strip if references
           
           # If the treaty has a treaty type string ...
           unless treaty_type_string.blank?
@@ -125,6 +127,23 @@ task :import_json => :environment do
               treaty_party.treaty = treaty
               treaty_party.party = party
               treaty_party.save
+            end
+          end
+          
+          # If the treaty has a citations string ...
+          unless citation_string.blank?
+            
+            # We split the citation string on semicolons and loop through each fragment.
+            citation_string.split( ';' ).each do |citation_string|
+              
+              # We strip any whitespace from the start and end of the citation string.
+              citation_string = citation_string.strip
+              
+              # We create a new citation attached to the aggreement.
+              citation = Citation.new
+              citation.citation = citation_string
+              citation.treaty = treaty
+              citation.save
             end
           end
           
