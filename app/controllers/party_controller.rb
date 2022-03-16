@@ -8,4 +8,14 @@ class PartyController < ApplicationController
     party = params[:party]
     @party = Party.find( party )
   end
+  
+  def action_list
+    party = params[:party]
+    @party = Party.find( party )
+  end
+  
+  def treaty_list
+    party = params[:party]
+    @party = Party.find( party )
+  end
 end
