@@ -12,17 +12,10 @@ Rails.application.routes.draw do
   get 'subjects' => 'subject#index', :as => 'subject_list'
   get 'subjects/:subject' => 'subject#show', :as => 'subject_show'
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
   get 'parties' => 'party#index', :as => 'party_list'
   get 'parties/:party' => 'party#show', :as => 'party_show'
+  get 'parties/:party/actions' => 'party#action_list', :as => 'party_action_list'
+  get 'parties/:party/treaties' => 'party#treaty_list', :as => 'party_treaty_list'
   
   get 'action-types' => 'action_type#index', :as => 'action_type_list'
   get 'action-types/:action_type' => 'action_type#show', :as => 'action_type_show'
