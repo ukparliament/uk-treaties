@@ -26,29 +26,37 @@ task :get_actions => :environment do
         action_on = row.xpath( 'td[3]/text()' ).to_s
         effective_on = row.xpath( 'td[4]/text()' ).to_s
         
-        # We attempt to find a party with the same name downcased.
-        party = Party.find_by_downcased_name( party_string.downcase )
+        # Unless the party string is blank ...
+        unless party_string.blank?
         
-        # If there's not a party with the same name downcased ...
-        unless party
+          # ... we attempt to find a party with the same name downcased.
+          party = Party.find_by_downcased_name( party_string.downcase )
+        
+          # If there's not a party with the same name downcased ...
+          unless party
           
-          # ... we create the party.
-          party = Party.new
-          party.name = party_string
-          party.downcased_name = party_string.downcase
-          party.save
+            # ... we create the party.
+            party = Party.new
+            party.name = party_string
+            party.downcased_name = party_string.downcase
+            party.save
+          end
         end
         
-        # We attempt to find an action type with the same label.
-        action_type = ActionType.find_by_label( action_type_string )
+        # Unless the action type string is blank ...
+        unless action_type_string.blank?
         
-        # If there's not an action type with the same label ...
-        unless action_type
+          # We attempt to find an action type with the same label.
+          action_type = ActionType.find_by_label( action_type_string )
+        
+          # If there's not an action type with the same label ...
+          unless action_type
           
-          # ... we create the action type.
-          action_type = ActionType.new
-          action_type.label = action_type_string
-          action_type.save
+            # ... we create the action type.
+            action_type = ActionType.new
+            action_type.label = action_type_string
+            action_type.save
+          end
         end
         
         # We create a new action.
@@ -56,8 +64,8 @@ task :get_actions => :environment do
         action.action_on = action_on
         action.effective_on = effective_on
         action.treaty = treaty
-        action.party = party
-        action.action_type = action_type
+        action.party = party if party
+        action.action_type = action_type if action_type
         action.save
       end
     end
