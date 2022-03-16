@@ -2,7 +2,7 @@
 	<%= content_tag( 'td', link_to( action_from_treaty.party.name, party_show_url( :party => action_from_treaty.party ) ) ) %>
 	<td>
 		<% if action_from_treaty.action_type -%>
-			<%= action_from_treaty.action_type.label %>
+			<%= link_to( action_from_treaty.action_type.label, action_type_show_url( :action_type => action_from_treaty.action_type ) ) %>
 		<% end -%>
 	</td>
 	<%= content_tag( 'td', action_from_treaty.action_on ) %>
