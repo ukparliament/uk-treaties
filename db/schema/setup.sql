@@ -1,7 +1,9 @@
+drop table if exists actions;
 drop table if exists treaty_parties;
 drop table if exists parties;
 drop table if exists citations;
 drop table if exists treaties;
+drop table if exists action_types;
 drop table if exists subjects;
 drop table if exists treaty_types;
 
@@ -19,6 +21,12 @@ create table treaty_types (
 );
 insert into treaty_types (short_name, label) values ( 'BI', 'Bilateral');
 insert into treaty_types (short_name, label) values ( 'MULTI', 'Multilateral');
+	
+create table action_types (
+	id serial,
+	label varchar(255) not null,
+	primary key (id)
+);
 
 create table treaties (
 	id serial,
@@ -61,5 +69,18 @@ create table treaty_parties (
 	party_id int not null,
 	constraint fk_treaty foreign key (treaty_id) references treaties(id),
 	constraint fk_party foreign key (party_id) references parties(id),
+	primary key (id)
+);
+
+create table actions (
+	id serial,
+	action_on date,
+	effective_on date,
+	treaty_id int not null,
+	party_id int not null,
+	action_type_id int,
+	constraint fk_treaty foreign key (treaty_id) references treaties(id),
+	constraint fk_party foreign key (party_id) references parties(id),
+	constraint fk_action_type foreign key (action_type_id) references action_types(id),
 	primary key (id)
 );
