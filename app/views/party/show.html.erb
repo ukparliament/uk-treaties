@@ -1,25 +1,7 @@
 <%= content_tag( 'h1', @party.name ) %>
 
-<%= content_tag( 'h1', 'Treaties' ) %>
-<table>
-	<%= render :partial => 'treaty/table_header' %>
-	<tbody>
-		<%= render :partial => 'treaty/treaty', :collection => @party.treaties %>
-	</tbody>
-</table>
-
-<!-- %= content_tag( 'h1', 'Actions' ) %>
-<table>
-	<thead>
-		<tr>
-			<%= content_tag( 'th', 'Agreement' ) %>
-			<%= content_tag( 'th', 'Action type' ) %>
-			<%= content_tag( 'th', 'Action on' ) %>
-			<%= content_tag( 'th', 'Effective on' ) %>
-		</tr>
-	</thead>
-	<tbody>
-		<!-- %= render :partial => 'action/action_from_party', :collection => @party.actions % -->
-	</tbody>
-</table -->
+<ul>
+	<%= content_tag( 'li', link_to( "Treaties (#{@party.treaties.count})", party_treaty_list_url ) ) %>
+	<%= content_tag( 'li', link_to( "Actions (#{@party.actions.count})", party_action_list_url ) ) %>
+</ul>
 		
