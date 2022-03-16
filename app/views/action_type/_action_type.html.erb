@@ -1,1 +1,1 @@
-<%= content_tag( 'li', action_type.label ) %>
+<%= content_tag( 'li', link_to( action_type.label, action_type_show_url( :action_type => action_type ) ) ) %>
