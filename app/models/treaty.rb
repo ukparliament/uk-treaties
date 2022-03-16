@@ -8,4 +8,5 @@ class Treaty < ApplicationRecord
     -> { order( 'name' ) },
     :through => :treaty_parties
   has_many :citations
+  has_many :actions
 end
