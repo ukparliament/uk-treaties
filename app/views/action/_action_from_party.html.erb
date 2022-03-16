@@ -1,5 +1,5 @@
 <tr>
-	<%= content_tag( 'td', link_to( action_from_party.agreement.title, agreement_show_url( :agreement => action_from_party.agreement ) ) ) %>
+	<%= content_tag( 'td', link_to( action_from_party.treaty.title, treaty_show_url( :treaty => action_from_party.treaty ) ) ) %>
 	<td>
 		<% if action_from_party.action_type -%>
 			<%= action_from_party.action_type.label %>
