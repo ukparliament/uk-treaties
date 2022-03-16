@@ -1,0 +1,15 @@
+<%= content_tag( 'h1', "#{@party.name} - Actions" ) %>
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'th', 'Agreement' ) %>
+			<%= content_tag( 'th', 'Action type' ) %>
+			<%= content_tag( 'th', 'Action on' ) %>
+			<%= content_tag( 'th', 'Effective on' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'action/action_from_party', :collection => @party.actions %>
+	</tbody>
+</table>
+		
