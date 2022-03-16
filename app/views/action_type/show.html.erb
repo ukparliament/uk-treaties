@@ -1,0 +1,15 @@
+<%= content_tag( 'h1', @action_type.label ) %>
+
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Treaty' ) %>
+			<%= content_tag( 'td', 'Party' ) %>
+			<%= content_tag( 'td', 'Taken on' ) %>
+			<%= content_tag( 'td', 'Effective on' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'action/action_from_action_type', :collection => @action_type.actions %>
+	</tbody>
+</table>
