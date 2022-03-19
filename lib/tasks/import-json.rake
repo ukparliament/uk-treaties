@@ -29,16 +29,7 @@ task :import_json => :environment do
         description = record['description']
         signed_on = record['signed_event_date']
         in_force_on = record['definative_eif_event_date']
-        
-        
-        
-        signed_in = record['signed_event_location']
-        
-        
-        
-        
-        
-        
+        signed_at_string = record['signed_event_location']
         citation_string = record['references']
         treaty_type_string = record['field3']
         subject_string = record['subject']
@@ -65,10 +56,8 @@ task :import_json => :environment do
           treaty.description = description.strip if description
           treaty.signed_on = signed_on
           treaty.in_force_on = in_force_on
-          
-          
-          
-          treaty.signed_in = signed_in.strip if signed_in
+        
+          treaty.signed_at_temp = signed_at_string
           
           # If the treaty has a treaty type string ...
           unless treaty_type_string.blank?
@@ -147,6 +136,13 @@ task :import_json => :environment do
             end
           end
           
+          # If the treaty has a signed at string ...
+          unless signed_at_string.blank?
+            
+            # ... we set up locations and signing locations.
+            set_signing_locations( treaty, signed_at_string )
+          end
+          
           # We save the treaty.
           treaty.save
           
@@ -158,4 +154,140 @@ task :import_json => :environment do
       end
     end
   end
+end
+
+# ## A method to set locations and signing locations.
+def set_signing_locations( treaty, signed_at_string )
+  
+  # We strip whitespace from the start and end of the signed at string.
+  signed_at_string.strip!
+  
+  # The signing location data is horrendously messy. Treaties may be signed in one or more locations but only one field is provided meaning records take different approaches to managing multiple locations. Some split by slashes, some by 'and', some by ampersands, some by semicolons and some just don't bother. This method is an attempt to reconstruct a silk purse from some badly chewed pigs' ears.
+  
+  # If the signed at string is 'U/N' ...
+  if signed_at_string == 'U/N'
+    
+    # ... we find or create a location with the name 'U/N'.
+    find_or_create_location_with_signing( 'U/N', treaty )
+    
+  # Otherwise, if the signed at string is 'Amman-Jerusalem', 'Cairo-Jerusalem', 'London-Paris', 'London-Paris-Rome' or 'Stockholm-Chistiania' ...
+  elsif signed_at_string == 'Amman-Jerusalem' or signed_at_string == 'Cairo-Jerusalem' or signed_at_string == 'London-Paris' or signed_at_string == 'London-Paris-Rome' or signed_at_string == 'Stockholm-Chistiania'
+    
+    # ... we split the signed at string on the hyphens ...
+    signed_at_string.split( '-' ).each do |location_string|
+      
+      # ... and find or create the location and signing.
+      find_or_create_location_with_signing( location_string, treaty )
+    end
+    
+  # Otherwise, if the signed at string is 'The Hague,Berlin' ...
+  elsif signed_at_string == 'The Hague,Berlin'
+    
+    # ... we split the signed at string on the comma ...
+    signed_at_string.split( ',' ).each do |location_string|
+      
+      # ... and find or create the location and signing.
+      find_or_create_location_with_signing( location_string, treaty )
+    end
+    
+  # Otherwise, if the signed at string is 'Canberra Bern' ...
+  elsif signed_at_string == 'Canberra Bern'
+    
+    # ... we split the signed at string on the space ...
+    signed_at_string.split( ' ' ).each do |location_string|
+      
+      # ... and find or create the location and signing.
+      find_or_create_location_with_signing( location_string, treaty )
+    end
+    
+  # Otherwise, if the signed at string is 'London St Petersburg' ...
+  elsif signed_at_string == 'London St Petersburg'
+    
+    # ... we find or create the location and signing for London ...
+    find_or_create_location_with_signing( 'London', treaty )
+    
+    # ... and find or create the location and signing for St Petersburg.
+    find_or_create_location_with_signing( 'St Petersburg', treaty )
+    
+  # Otherwise, if the signed at string is none of the above ...
+  else
+    
+    # ... we know that location names may be split by ' and ', ampersand, semicolon or slash ...
+    # ... so we check for inclusion.
+    
+    # If the signed at string includes ' and ' ...
+    if signed_at_string.include?( ' and ' )
+      
+      # ... we split the signed at string on the word 'and' ...
+      signed_at_string.split( ' and ' ).each do |location_string|
+        
+        # ... and find or create the location and signing.
+        find_or_create_location_with_signing( location_string, treaty )
+      end
+      
+      
+    # Otherwise, if the signed at string includes an ampersand ...
+    elsif signed_at_string.include?( '&' )
+      
+      # ... we split the signed at string on ampersands ...
+      signed_at_string.split( '&' ).each do |location_string|
+        
+        # ... and find or create the location and signing.
+        find_or_create_location_with_signing( location_string, treaty )
+      end
+      
+    # Otherwise, if the signed at string includes a semicolon ...
+    elsif signed_at_string.include?( ';' )
+      
+      # ... we split the signed at string on semicolons ...
+      signed_at_string.split( ';' ).each do |location_string|
+        
+        # ... and find or create the location and signing.
+        find_or_create_location_with_signing( location_string, treaty )
+      end
+      
+    # Otherwise, if the signed at string includes a slash ...
+    elsif signed_at_string.include?( '/' )
+      
+      # ... we split the signed at string on slashes ...
+      signed_at_string.split( '/' ).each do |location_string|
+        
+        # ... and find or create the location and signing.
+        find_or_create_location_with_signing( location_string, treaty )
+      end
+
+  
+    # Otherwise, if the signed at string doesn't include 'and', an ampersand, a semicolon or a slash ...
+    else
+  
+      # ... we find or create the location and signing.
+      find_or_create_location_with_signing( signed_at_string, treaty )
+    end
+  end
+end
+
+## A method to find or create a location and signing.
+def find_or_create_location_with_signing( location_name, treaty )
+  
+  # We strip the whitespace from the location name.
+  location_name.strip!
+  
+  # We try to find a location with this name downcased.
+  location = Location.find_by_downcased_name( location_name.downcase )
+  
+  # If no such location exists ...
+  unless location
+    
+    # ... we create a new location.
+    location = Location.new
+    location.name = location_name
+    location.downcased_name = location_name.downcase
+    location.save
+  end
+  
+  # We create a new signing location.
+  signing_location = SigningLocation.new
+  signing_location.treaty = treaty
+  signing_location.location = location
+  signing_location.save
 end
