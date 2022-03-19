@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   
   get 'action-types' => 'action_type#index', :as => 'action_type_list'
   get 'action-types/:action_type' => 'action_type#show', :as => 'action_type_show'
+  
+  get 'locations' => 'location#index', :as => 'location_list'
+  get 'locations/:location' => 'location#show', :as => 'location_show'
 end
