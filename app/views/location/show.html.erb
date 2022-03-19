@@ -1,0 +1,9 @@
+<%= content_tag( 'h1', @location.name ) %>
+
+<%= content_tag( 'h2', 'Treaties' ) %>
+<table>
+	<%= render :partial => 'treaty/table_header' %>
+	<tbody>
+		<%= render :partial => 'treaty/treaty', :collection => @location.treaties %>
+	</tbody>
+</table>
