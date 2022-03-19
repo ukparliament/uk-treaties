@@ -25,8 +25,10 @@
 			<tr>
 				<%= content_tag( 'th', 'Signed at:' ) %>
 				<td>
-					<% if details.signed_in -%>
-						<%= details.signed_in %>
+					<% unless details.locations.empty? -%>
+						<ol>
+							<%= render :partial => 'location/location', :collection => details.locations %>
+						</ol>
 					<% else -%>
 						The signing location is not present in FCDO dataset.
 					<% end -%>
