@@ -4,6 +4,10 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+# Ignore JSON dumps.
+/db/json/*.json
+/db/*.sqlite3-*
+
 # Ignore bundler config.
 /.bundle
 .DS_Store

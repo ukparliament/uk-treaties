@@ -12,7 +12,7 @@ def send_request(pageNumberVar):
         response = requests.post(
             url="https://treaties.fcdo.gov.uk/awweb/awfp/search/1",
             headers={
-                "Cookie": "JSESSIONID=B92176344F27D22DAF513DD110FB44B1;",
+                "Cookie": "JSESSIONID=49BF32AC229DA2A741FC4BAF9836C239;",
                 "Content-Type": "application/json; charset=utf-8",
             },
             data=json.dumps(
@@ -43,5 +43,5 @@ def send_request(pageNumberVar):
     except requests.exceptions.RequestException:
         print("HTTP Request failed")
 
-for x in range(11000, 12000):
+for x in range(21000, 21437):
     send_request(x)
