@@ -41,16 +41,14 @@ create table treaties (
 	id serial,
 	uuid char(36) not null,
 	record_id int not null,
-	treaty_id int not null,
+	treaty_id int,
 	title varchar(10000) not null,
 	description varchar(10000),
 	signed_on varchar(255),
 	in_force_on varchar(255),
-	pdf_link varchar(255),
+	pdf_file_name varchar(255),
 	treaty_type_id int,
 	subject_id int,
-	
-	signed_at_temp varchar(255),
 	
 	constraint fk_treaty_type foreign key (treaty_type_id) references treaty_types(id),
 	constraint fk_subject foreign key (subject_id) references subjects(id),
