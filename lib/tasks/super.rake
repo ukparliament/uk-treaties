@@ -1,5 +1,5 @@
 task :super => [
   :import_json,
-  :get_pdf_links,
-  :get_actions
+  :get_actions,
+  :get_pdf_links
 ]
