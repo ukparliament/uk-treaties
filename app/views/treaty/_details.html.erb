@@ -1,59 +1,53 @@
-<div class="details">
-	<%= content_tag( 'h2', 'Details' ) %>
-	<table>
-		<tbody>
-			<tr>
-				<%= content_tag( 'th', 'Treaty type:' ) %>
-				<td>
+<div id="details">
+	<h2>Details</h2>
+	
+	<dl>
+	
+				<dt>Treaty type</dt>
+				
+				<dd>
 					<% if details.treaty_type -%>
 						<%= link_to( details.treaty_type.label, treaty_type_show_url( :treaty_type => details.treaty_type ) ) %>
 					<% else -%>
-						Treaty type - bilateral or multilateral - is not present in FCDO dataset.
+						&mdash;
 					<% end -%>
-				</td>
-			</tr>
-			<tr>
-				<%= content_tag( 'th', 'Subject:' ) %>
-				<td>
+				</dd>
+ 
+				<dt>Subject</dt>
+				<dd>
 					<% if details.subject -%>
 						<%= link_to( details.subject.subject, subject_show_url( :subject => details.subject ) ) %>
 					<% else -%>
-						The subject of the treaty is not present in FCDO dataset.
+						&mdash;
 					<% end -%>
-				</td>
-			</tr>
-			<tr>
-				<%= content_tag( 'th', 'Signed at:' ) %>
-				<td>
+				</dd>
+
+				<dt>Signed at</dt>
+				<dd>
 					<% unless details.locations.empty? -%>
-						<ol>
+						<ul>
 							<%= render :partial => 'location/location', :collection => details.locations %>
-						</ol>
+						</ul>
 					<% else -%>
-						The signing location is not present in FCDO dataset.
+						&mdash;
 					<% end -%>
-				</td>
-			</tr>
-			<tr>
-				<%= content_tag( 'th', 'Signed on:' ) %>
-				<td>
+				</dd>
+ 
+				<dt>Signed on</dt>
+				<dd>
 					<% if details.signed_on -%>
 						<%= details.signed_on %>
 					<% else -%>
-						The date of signing is not present in FCDO dataset.
+						&mdash;
 					<% end -%>
-				</td>
-			</tr>
-			<tr>
-				<%= content_tag( 'th', 'In force on:' ) %>
-				<td>
+				</dd>
+ 
+				<dt>In force on</dt>
+				<dd>
 					<% if details.in_force_on -%>
 						<%= details.in_force_on %>
 					<% else -%>
-						The in force date is not present in FCDO dataset.
+						&mdash;
 					<% end -%>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+				</dd>
 </div>

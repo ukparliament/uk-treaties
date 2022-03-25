@@ -4,17 +4,66 @@
     <title>FCDO Treaties</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <style>
-    body {max-width:42rem;padding:1rem;margin:1rem auto;font-family:sans-serif;line-height:1.4;}
-    a {text-decoration:none;}
-    a:hover {text-decoration:underline;}
-    h1, h2 {font-weight:normal;}
-	iframe {
-		height: 50em;
-		width: 100%;
-	}
-	@media (prefers-contrast: more) {
-        a {text-decoration:underline;}
-	}
+    
+    @media only screen and (max-width: 42rem) {
+
+  div#details,
+  div#document,
+  div#parties,
+  div#actions,
+  div#citations {
+    border-bottom: 0.5rem solid #efefef;
+    background-color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media only screen and (min-width: 41rem) {
+
+  div#details,
+  div#document,
+  div#parties,
+  div#actions,
+  div#citations {
+    padding: 0.5rem;
+    background-color: #efefef;
+    margin-bottom: 0.5rem;
+  }
+
+}
+
+body {
+  max-width: 42rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  font-family: sans-serif;
+}
+
+main :not(h1, h2) {
+  line-height: 1.4;
+}
+
+h1,
+h2 {
+  font-weight: normal;
+}
+
+main h2 {margin-top:0;}
+
+iframe {
+  height: 50em;
+  width: 100%;
+}
+
+img#schema {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0.5rem;
+}
+	
     </style>
 </head>
 
@@ -22,17 +71,17 @@
   
   <header>
   <nav>
-  <a href="/treaties">treaties</a>
+  <a href="/treaties">Treaties</a>
   &middot;
-  <a href="/treaty-types">treaty types</a>
+  <a href="/treaty-types">Treaty types</a>
   &middot;
-  <a href="/parties">parties</a>
+  <a href="/parties">Parties</a>
   &middot;
-  <a href="/locations">locations</a>
+  <a href="/locations">Locations</a>
   &middot;
-  <a href="/subjects">subjects</a>
+  <a href="/subjects">Subjects</a>
   &middot;
-  <a href="/action-types">action types</a>
+  <a href="/action-types">Action types</a>
 
   </nav>
   </header>
