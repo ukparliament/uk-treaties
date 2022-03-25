@@ -13,4 +13,11 @@ class Treaty < ApplicationRecord
   has_many :locations,
     -> { order( 'name' ) },
     :through => :signing_locations
+    
+  def pdf_link
+    if self.pdf_file_name
+      pdf_link = "https://treaties.fcdo.gov.uk/data/Library2/pdf/#{self.pdf_file_name}"
+    end
+    pdf_link
+  end  
 end
