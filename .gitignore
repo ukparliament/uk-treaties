@@ -8,6 +8,11 @@
 /db/json/*.json
 /db/*.sqlite3-*
 
+public/files
+db/json
+
+
+
 # Ignore bundler config.
 /.bundle
 .DS_Store
