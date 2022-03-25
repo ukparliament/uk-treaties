@@ -19,11 +19,6 @@ task :import_json => :environment do
         
         # ... we extract the details we want to store.
         uuid = record['uuid']
-        
-        # document_urls take the form https://treaties.fcdo.gov.uk/data/Library2\html\{id}.html ...
-        # ... where the only bit we're interested in is {id}. 
-        # We get the document url, split once to get the portion beyond the last - escaped - backslash, again to get the portion before the dot and convert to an integer.
-        treaty_id = record['document_url'].strip.split( '\\' ).last.split( '.' ).first.to_i
         record_id = record['id'].to_i
         title = record['title']
         description = record['description']
@@ -34,6 +29,26 @@ task :import_json => :environment do
         treaty_type_string = record['field3']
         subject_string = record['subject']
         parties_string = record['country_name']
+        
+        # document_urls take the form https://treaties.fcdo.gov.uk/data/Library2\{format}\{id}.{format} ...
+        # ... where format is either html, pdf or PDF.
+        # Where the format is html, we can use the ID to link to the treaty metadata file and party action HTML.
+        # Where the format is pdf, we can use the document_url to get the file name of the treaty PDF.
+        # We get the document_url from the JSON.
+        document_url = record['document_url']
+        
+        # If the document_url includes \html ...
+        if document_url.include?( "\html" )
+          
+          # ... we construct the treaty_id by taking the document url, splitting once to get the portion beyond the last - escaped - backslash, again to get the portion before the dot and converting to an integer.
+          treaty_id = document_url.strip.split( '\\' ).last.split( '.' ).first.to_i
+          
+        # If the document_url includes \pdf or \PDF ...
+        elsif document_url.include?( "\pdf" ) or document_url.include?( "\PDF" )
+          
+          # ... we construct the pdf file name by splitting on the last - escaped - backslash.
+          pdf_file_name = document_url.split( '\\' ).last
+        end
         
         # We ignore ...
         # ... lb_document_id because this is always the same as the record_id.
@@ -50,14 +65,13 @@ task :import_json => :environment do
           # ... we create a new treaty.
           treaty = Treaty.new
           treaty.uuid = uuid.strip
-          treaty.treaty_id = treaty_id
+          treaty.treaty_id = treaty_id if treaty_id
           treaty.record_id = record_id
           treaty.title = title.strip if title
           treaty.description = description.strip if description
           treaty.signed_on = signed_on
           treaty.in_force_on = in_force_on
-        
-          treaty.signed_at_temp = signed_at_string
+          treaty.pdf_file_name = pdf_file_name if pdf_file_name
           
           # If the treaty has a treaty type string ...
           unless treaty_type_string.blank?
