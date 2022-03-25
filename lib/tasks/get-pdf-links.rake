@@ -8,13 +8,24 @@ task :get_pdf_links => :environment do
   citations.each do |citation|
     
     # ... pull out the bit beyond the '||' ...
-    pdf_link = citation.citation.split( '||' ).last
+    pdf_file_name = citation.citation.split( '||' ).last
+    
+    # ... pull out the bit beyond the final '/' ...
+    pdf_file_name = pdf_file_name.split( '/').last
     
     # ... strip any whitespace from the start and end ...
-    pdf_link.strip!
+    pdf_file_name.strip!
     
-    # ... and add the link to the treaty the citation is attached to.
-    citation.treaty.pdf_link = pdf_link
-    citation.treaty.save
+    # ... if the treaty does not have a PDF file name with the same value as this PDF file name ...
+    # ... which is, in practice, none of them do ...
+    # ... nor indeed does any treaty having this form of citation have a PDF file name in the document URL ...
+    if citation.treaty.pdf_file_name != pdf_file_name
+      
+      # ... we set the treaty PDF file name to this file name ... 
+      citation.treaty.pdf_file_name = pdf_file_name
+      
+      # ... and save the treaty.
+      citation.treaty.save
+    end
   end
 end
