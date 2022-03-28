@@ -88,6 +88,8 @@ td {
   <main>
     <%= yield %>
     </main>
-    <footer></footer>
+    <footer>
+    	<%= content_tag( 'p', link_to( 'Colophon',  colophon_list_url ) ) %>
+    </footer>
   </body>
 </html>
