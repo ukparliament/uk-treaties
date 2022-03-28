@@ -5,6 +5,6 @@
 			<%= link_to( action_from_party.action_type.label, action_type_show_url( :action_type => action_from_party.action_type ) ) %>
 		<% end -%>
 	</td>
-	<%= content_tag( 'td', action_from_party.action_on ) %>
-	<%= content_tag( 'td', action_from_party.effective_on ) %>
+	<%= content_tag( 'td', action_from_party.action_on_display ) %>
+	<%= content_tag( 'td', action_from_party.effective_on_display ) %>
 </tr>
