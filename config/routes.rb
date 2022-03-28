@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   
   get 'locations' => 'location#index', :as => 'location_list'
   get 'locations/:location' => 'location#show', :as => 'location_show'
+  
+  get 'colophon' => 'colophon#index', :as => 'colophon_list'
 end
