@@ -19,5 +19,21 @@ class Treaty < ApplicationRecord
       pdf_link = "https://treaties.fcdo.gov.uk/data/Library2/pdf/#{self.pdf_file_name}"
     end
     pdf_link
-  end  
+  end
+  
+  def signed_on_display
+    signed_on_display = ''
+    if self.signed_on
+      signed_on_display = self.signed_on.strftime( '%-d %B %Y')
+    end
+    signed_on_display
+  end
+  
+  def in_force_on_display
+    in_force_on_display = ''
+    if self.in_force_on
+      in_force_on_display = self.in_force_on.strftime( '%-d %B %Y')
+    end
+    in_force_on_display
+  end
 end
