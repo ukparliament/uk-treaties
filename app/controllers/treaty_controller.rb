@@ -1,7 +1,7 @@
 class TreatyController < ApplicationController
   
   def index
-    @treaties = Treaty.all.order( 'in_force_on, signed_on' )
+    @treaties = Treaty.all.order( 'signed_on, in_force_on' )
   end
   
   def show
