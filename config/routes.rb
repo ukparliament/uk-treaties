@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get 'locations/:location' => 'location#show', :as => 'location_show'
   
   get 'colophon' => 'colophon#index', :as => 'colophon_list'
+  get 'privacy-policy' => 'privacy#index', :as => 'privacy_list'
 end
