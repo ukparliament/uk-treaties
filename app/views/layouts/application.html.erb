@@ -89,7 +89,9 @@ td {
     <%= yield %>
     </main>
     <footer>
-    	<%= content_tag( 'p', link_to( 'Colophon',  colophon_list_url ) ) %>
+		<%= link_to( 'Colophon',  colophon_list_url ) %>
+		&middot;
+		<%= link_to( 'Privacy policy',  privacy_list_url ) %>
     </footer>
   </body>
 </html>
