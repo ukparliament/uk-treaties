@@ -1,6 +1,15 @@
-<%= content_tag( 'h1', 'Colophon' ) %>
+<h1>Colophon</h1>
 
-<%= content_tag( 'p', "Information scraped and reshaped from the #{link_to( 'Foreign, Commonwealth & Development Office treaty database', 'https://treaties.fcdo.gov.uk/responsive/app/consolidatedSearch/')} by Robert and #{link_to( 'Michael', 'https://twitter.com/fantasticlife')}. This website runs on #{link_to( 'Rails 6.1.4', 'https://rubygems.org/gems/rails/versions/6.1.4' )} and #{link_to( 'Ruby 3.0.3', 'https://www.ruby-lang.org/en/news/2021/11/24/ruby-3-0-3-released/' )} using a #{link_to( 'Postgres 14', 'https://www.postgresql.org/about/news/postgresql-14-released-2318/' )} database. The source code is #{link_to( 'available on GitHub', 'https://github.com/fantasticlife/uk-treaties')}.".html_safe ) %>
+<h2>About this site</h2>
+
+<p>This content on this site is from information published on the <a href="https://treaties.fcdo.gov.uk/">Foreign, Commonwealth &amp; Development Office treaty database</a>, compiled by Robert Brook and <a href="https://twitter.com/fantasticlife">Michael Smethurst</a>.</p>
+
+
+<p>This website runs on <a href="https://rubygems.org/gems/rails/versions/6.1.4">Rails 6.1.4</a> and <a href="https://www.ruby-lang.org/en/news/2021/11/24/ruby-3-0-3-released/">Ruby 3.0.3</a> using a <a href="https://www.postgresql.org/about/news/postgresql-14-released-2318/">Postgres 14</a> database. The source code is <a href="https://github.com/fantasticlife/uk-treaties">available on GitHub</a>.</p>
+
+<p>The site does not use Javascript. Although we use CSS to style the appearance of the pages, you should be able to use the site with CSS turned off or with user agents that do not use CSS.</p>
+
 
 <h2>Database schema</h2>
+
 <img id="schema" src="/schema.svg">
