@@ -34,7 +34,7 @@
 
 body {
   max-width: 42rem;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem auto;
   font-family: sans-serif;
 }
@@ -63,7 +63,12 @@ th,
 td {
   padding: 0.5rem;
 }
+	nav a {
+	line-height:1.4;
+	}
 	
+	
+	main {margin:2rem 0;}
     </style>
 </head>
 
@@ -72,15 +77,15 @@ td {
   <header>
   <nav>
   <a href="/treaties">Treaties</a>
-  &middot;
+  -
   <a href="/treaty-types">Treaty types</a>
-  &middot;
+  -
   <a href="/parties">Parties</a>
-  &middot;
+  -
   <a href="/locations">Locations</a>
-  &middot;
+  -
   <a href="/subjects">Subjects</a>
-  &middot;
+  -
   <a href="/action-types">Action types</a>
 
   </nav>
@@ -90,7 +95,7 @@ td {
     </main>
     <footer>
 		<%= link_to( 'Colophon',  colophon_list_url ) %>
-		&middot;
+		-
 		<%= link_to( 'Privacy policy',  privacy_list_url ) %>
     </footer>
   </body>
