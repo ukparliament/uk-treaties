@@ -4,7 +4,7 @@
 import requests
 import json
 
-
+# remember to pick up a new session id cookie
 def send_request(pageNumberVar):
     print(pageNumberVar)
 
@@ -12,7 +12,7 @@ def send_request(pageNumberVar):
         response = requests.post(
             url="https://treaties.fcdo.gov.uk/awweb/awfp/search/1",
             headers={
-                "Cookie": "JSESSIONID=49BF32AC229DA2A741FC4BAF9836C239;",
+                "Cookie": "JSESSIONID=8E4B95FEC610437C9438077D1D8AC25B;",
                 "Content-Type": "application/json; charset=utf-8",
             },
             data=json.dumps(
@@ -43,5 +43,7 @@ def send_request(pageNumberVar):
     except requests.exceptions.RequestException:
         print("HTTP Request failed")
 
-for x in range(21000, 21437):
+# 21437 is the last seen in March 2022
+# for x in range(21000, 21437):
+for x in range(21437, 21491):
     send_request(x)
