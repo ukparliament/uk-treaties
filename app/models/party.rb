@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: parties
+#
+#  id             :integer          not null, primary key
+#  downcased_name :string(255)      not null
+#  name           :string(255)      not null
+#
 class Party < ApplicationRecord
 
   has_many :actions,

@@ -1,10 +1,8 @@
-development: &development
+test:
   adapter: postgresql
   encoding: unicode
-  database: fcdo_treaties
   host: localhost
-  pool: 5
-
-test:
-  <<: *development
+  port: 5432
+  username: postgres
+  password: postgres
   database: fcdo_treaties_test

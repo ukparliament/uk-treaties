@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: treaties
+#
+#  id             :integer          not null, primary key
+#  description    :string(10000)
+#  in_force_on    :date
+#  pdf_file_name  :string(255)
+#  signed_on      :date
+#  title          :string(10000)    not null
+#  uuid           :string(36)       not null
+#  record_id      :integer          not null
+#  subject_id     :integer
+#  treaty_id      :integer
+#  treaty_type_id :integer
+#
+# Foreign Keys
+#
+#  fk_subject      (subject_id => subjects.id)
+#  fk_treaty_type  (treaty_type_id => treaty_types.id)
+#
 class Treaty < ApplicationRecord
   
   belongs_to :subject, optional: true
