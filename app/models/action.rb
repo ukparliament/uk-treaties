@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: actions
+#
+#  id             :integer          not null, primary key
+#  action_on      :date
+#  effective_on   :date
+#  action_type_id :integer
+#  party_id       :integer          not null
+#  treaty_id      :integer          not null
+#
+# Foreign Keys
+#
+#  fk_action_type  (action_type_id => action_types.id)
+#  fk_party        (party_id => parties.id)
+#  fk_treaty       (treaty_id => treaties.id)
+#
 class Action < ApplicationRecord
   
   belongs_to :treaty
