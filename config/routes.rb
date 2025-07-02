@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   
   get 'uk-treaties/colophon' => 'colophon#index', :as => 'colophon_list'
   get 'uk-treaties/privacy-policy' => 'privacy#index', :as => 'privacy_list'
+  
+  get 'uk-treaties/meta' => 'meta#index', :as => 'meta_list'
+  get 'uk-treaties/meta/cookies' => 'meta#cookies', :as => 'meta_cookies'
 end

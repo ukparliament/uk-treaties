@@ -94,9 +94,13 @@ td {
     <%= yield %>
     </main>
     <footer>
-		<%= link_to( 'Colophon',  colophon_list_url ) %>
-		-
-		<%= link_to( 'Privacy policy',  privacy_list_url ) %>
+			<p>
+				<a href="https://www.parliament.uk/site-information/accessibility/">Accessibility statement</a>
+				-
+				<%= link_to( 'Cookies', meta_cookies_url )  %>
+				-
+				<a href="https://commonslibrary.parliament.uk/privacy-policy/">Privacy notice</a>
+			</p>
     </footer>
   </body>
 </html>
